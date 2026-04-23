@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Career Recommender</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #0f172a; color: white; }
+        .container { max-width: 900px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 15px; }
+        h1 { color: #38bdf8; text-align: center; margin-bottom: 30px; }
+        .form-group { margin: 20px 0; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #cbd5e1; }
+        textarea { width: 100%; padding: 15px; background: #334155; border: 2px solid #475569; border-radius: 10px; color: white; font-size: 16px; height: 80px; }
+        button { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 18px; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; width: 100%; margin: 20px 0; }
+        button:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+        .career-card { background: #334155; border: 2px solid #475569; padding: 25px; margin: 20px 0; border-radius: 12px; }
+        .match { background: #10b981; color: white; padding: 10px 20px; border-radius: 20px; float: right; font-weight: bold; font-size: 16px; }
+        .debug { background: #1e40af; padding: 15px; border-radius: 8px; margin: 20px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI Career Recommender</h1>
+        
+        <div class="form-group">
+            <label>Your Skills:</label>
+            <textarea id="skills">python, machine learning, deep learning, nlp, computer vision</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>Your Interests:</label>
+            <textarea id="interests">artificial intelligence, technology, research</textarea>
+        </div>
+        
+        <button onclick="findAICareers()">🚀 Find AI Careers</button>
+        
+        <div id="debug" class="debug"></div>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function findAICareers() {
+            const userSkills = document.getElementById('skills').value.toLowerCase();
+            const userInterests = document.getElementById('interests').value.toLowerCase();
+            
+            // Show debug info
+            const debugDiv = document.getElementById('debug');
+            debugDiv.innerHTML = `
+                <strong>🔍 ANALYZING YOUR PROFILE:</strong><br>
+                📝 Skills: "${userSkills}"<br>
+                🎯 Interests: "${userInterests}"<br>
+                ⚡ Searching for AI career matches...
+            `;
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            
+            // AI CAREERS DATABASE
+            const aiCareers = [
+                {
+                    title: "🤖 AI Generalist",
+                    description: "Work across multiple AI domains including machine learning, NLP, computer vision, and AI ethics to build comprehensive AI solutions.",
+                    requiredSkills: ["python", "machine learning", "deep learning", "nlp", "computer vision", "ai", "tensorflow", "pytorch"],
+                    salary: "$110,000 - $180,000",
+                    demand: "Very High",
+                    matchScore: 0
+                },
+                {
+                    title: "🧠 Machine Learning Engineer", 
+                    description: "Design, build, and deploy machine learning models and systems for production environments.",
+                    requiredSkills: ["python", "machine learning", "deep learning", "tensorflow", "pytorch", "algorithms", "data"],
+                    salary: "$100,000 - $160,000",
+                    demand: "Very High",
+                    matchScore: 0
+                },
+                {
+                    title: "💬 NLP Engineer",
+                    description: "Specialize in Natural Language Processing - build chatbots, translation systems, and text analysis tools.",
+                    requiredSkills: ["python", "nlp", "machine learning", "deep learning", "transformer", "language models"],
+                    salary: "$95,000 - $150,000", 
+                    demand: "High",
+                    matchScore: 0
+                },
+                {
+                    title: "👁️ Computer Vision Engineer",
+                    description: "Develop AI systems that can understand and process visual information from images and videos.",
+                    requiredSkills: ["python", "computer vision", "deep learning", "opencv", "image processing", "neural networks"],
+                    salary: "$100,000 - $155,000",
+                    demand: "High",
+                    matchScore: 0
+                },
+                {
+                    title: "📊 Data Scientist",
+                    description: "Analyze complex data and build predictive models using statistical and machine learning techniques.",
+                    requiredSkills: ["python", "statistics", "machine learning", "sql", "data analysis", "visualization"],
+                    salary: "$95,000 - $150,000",
+                    demand: "High", 
+                    matchScore: 0
+                }
+            ];
+
+            // Calculate match scores
+            aiCareers.forEach(career => {
+                let score = 0;
+                career.requiredSkills.forEach(skill => {
+                    if (userSkills.includes(skill)) {
+                        score += 15;
+                    }
+                });
+                career.matchScore = score;
+            });
+
+            // Filter and sort careers
+            const matchingCareers = aiCareers
+                .filter(career => career.matchScore > 0)
+                .sort((a, b) => b.matchScore - a.matchScore);
+
+            // Display results
+            if (matchingCareers.length > 0) {
+                resultsDiv.innerHTML = `<h2>🎉 Found ${matchingCareers.length} AI Career Matches</h2>`;
+                
+                matchingCareers.forEach(career => {
+                    const matchColor = career.matchScore >= 60 ? '#10b981' : 
+                                     career.matchScore >= 30 ? '#f59e0b' : '#ef4444';
+                    
+                    resultsDiv.innerHTML += `
+                        <div class="career-card">
+                            <div class="match" style="background: ${matchColor}">${career.matchScore}% Match</div>
+                            <h3>${career.title}</h3>
+                            <p>${career.description}</p>
+                            <p><strong>💰 Salary:</strong> ${career.salary}</p>
+                            <p><strong>📈 Demand:</strong> ${career.demand}</p>
+                            <p><strong>🔧 Key Skills:</strong> ${career.requiredSkills.join(', ')}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                resultsDiv.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #94a3b8;">
+                        <h3>🤔 No AI career matches found</h3>
+                        <p>Try skills like: <strong>python, machine learning, deep learning, nlp, computer vision, ai</strong></p>
+                    </div>
+                `;
+            }
+
+            // Update debug info
+            debugDiv.innerHTML += `<br>✅ <strong>ANALYSIS COMPLETE:</strong> Found ${matchingCareers.length} AI career matches`;
+        }
+
+        // Auto-run when page loads
+        setTimeout(findAICareers, 100);
+    </script>
+</body>
+</html>

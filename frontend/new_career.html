@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Working Career Recommender</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f8ff; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 30px; }
+        .form-group { margin: 20px 0; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #2c3e50; font-size: 18px; }
+        textarea { width: 100%; padding: 15px; border: 2px solid #bdc3c7; border-radius: 10px; font-size: 16px; height: 80px; resize: vertical; }
+        button { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 18px; border: none; border-radius: 10px; font-size: 20px; cursor: pointer; width: 100%; margin: 20px 0; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .results { margin-top: 30px; }
+        .category { color: #7f8c8d; font-size: 14px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .debug { background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Career Recommendation System</h1>
+        
+        <div class="form-group">
+            <label>🔧 Your Skills (comma separated):</label>
+            <textarea id="skills">design, writing</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>💡 Your Interests (comma separated):</label>
+            <textarea id="interests">creative</textarea>
+        </div>
+        
+        <button onclick="findCareers()">🚀 Find Career Matches</button>
+        
+        <div id="debug" class="debug"></div>
+        <div id="results" class="results"></div>
+    </div>
+
+    <script>
+        function findCareers() {
+            const userSkills = document.getElementById('skills').value.toLowerCase();
+            const userInterests = document.getElementById('interests').value.toLowerCase();
+            
+            // Show debug info
+            const debugDiv = document.getElementById('debug');
+            debugDiv.innerHTML = `
+                <strong>🔍 ANALYSIS:</strong><br>
+                📝 Your Skills: <strong>"${userSkills}"</strong><br>
+                🎯 Your Interests: <strong>"${userInterests}"</strong><br>
+                ⚡ Processing your career matches...
+            `;
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            
+            let foundMatches = false;
+            
+            // CREATIVE CAREERS
+            if (userSkills.includes('design') || userSkills.includes('writing') || userSkills.includes('creative') || userInterests.includes('creative')) {
+                foundMatches = true;
+                resultsDiv.innerHTML += '<h2 style="color: #9b59b6; border-bottom: 3px solid #9b59b6; padding-bottom: 10px;">🎨 Creative Careers</h2>';
+                
+                resultsDiv.innerHTML += `
+                    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-left: 5px solid #9b59b6; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                        <div style="background: #9b59b6; color: white; padding: 8px 15px; border-radius: 20px; float: right; font-weight: bold;">95% Match</div>
+                        <h3 style="color: #2c3e50; margin: 0 0 10px 0;">🎨 Graphic Designer</h3>
+                        <div class="category">Design • Creative • Visual Arts</div>
+                        <p><strong>Why it matches:</strong> Your <span style="color: #9b59b6; font-weight: bold;">design</span> skills are perfect for this creative role</p>
+                        <p>Create visual concepts and designs for branding, advertising, and digital media.</p>
+                        <p><strong>💰 Salary:</strong> $50,000 - $85,000</p>
+                        <p><strong>🔧 Key Skills:</strong> Design, Creativity, Adobe Tools, Typography, Branding</p>
+                    </div>
+                `;
+                
+                resultsDiv.innerHTML += `
+                    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-left: 5px solid #9b59b6; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                        <div style="background: #9b59b6; color: white; padding: 8px 15px; border-radius: 20px; float: right; font-weight: bold;">90% Match</div>
+                        <h3 style="color: #2c3e50; margin: 0 0 10px 0;">✏️ Content Writer</h3>
+                        <div class="category">Writing • Creative • Marketing</div>
+                        <p><strong>Why it matches:</strong> Your <span style="color: #9b59b6; font-weight: bold;">writing</span> skills are essential for content creation</p>
+                        <p>Create engaging written content for websites, blogs, marketing materials, and publications.</p>
+                        <p><strong>💰 Salary:</strong> $45,000 - $80,000</p>
+                        <p><strong>🔧 Key Skills:</strong> Writing, Research, SEO, Communication, Editing</p>
+                    </div>
+                `;
+            }
+            
+            // TECH CAREERS
+            if (userSkills.includes('python') || userSkills.includes('javascript') || userSkills.includes('programming') || userInterests.includes('technology')) {
+                foundMatches = true;
+                resultsDiv.innerHTML += '<h2 style="color: #3498db; border-bottom: 3px solid #3498db; padding-bottom: 10px;">💻 Technology Careers</h2>';
+                
+                resultsDiv.innerHTML += `
+                    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-left: 5px solid #3498db; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                        <div style="background: #3498db; color: white; padding: 8px 15px; border-radius: 20px; float: right; font-weight: bold;">92% Match</div>
+                        <h3 style="color: #2c3e50; margin: 0 0 10px 0;">🤖 Data Scientist</h3>
+                        <div class="category">Technology • Data • AI/ML</div>
+                        <p><strong>Why it matches:</strong> Your <span style="color: #3498db; font-weight: bold;">python</span> skills are essential for data science</p>
+                        <p>Use statistical analysis and machine learning to extract insights from complex data.</p>
+                        <p><strong>💰 Salary:</strong> $95,000 - $160,000</p>
+                        <p><strong>🔧 Key Skills:</strong> Python, Machine Learning, Statistics, SQL, Data Analysis</p>
+                    </div>
+                `;
+            }
+            
+            // BUSINESS CAREERS
+            if (userSkills.includes('excel') || userSkills.includes('communication') || userSkills.includes('marketing') || userInterests.includes('business')) {
+                foundMatches = true;
+                resultsDiv.innerHTML += '<h2 style="color: #27ae60; border-bottom: 3px solid #27ae60; padding-bottom: 10px;">📊 Business Careers</h2>';
+                
+                resultsDiv.innerHTML += `
+                    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-left: 5px solid #27ae60; padding: 20px; margin: 15px 0; border-radius: 10px;">
+                        <div style="background: #27ae60; color: white; padding: 8px 15px; border-radius: 20px; float: right; font-weight: bold;">95% Match</div>
+                        <h3 style="color: #2c3e50; margin: 0 0 10px 0;">📈 Business Analyst</h3>
+                        <div class="category">Business • Analysis • Management</div>
+                        <p><strong>Why it matches:</strong> Your <span style="color: #27ae60; font-weight: bold;">excel</span> skills are perfect for business analysis</p>
+                        <p>Analyze business processes and requirements to improve organizational efficiency.</p>
+                        <p><strong>💰 Salary:</strong> $65,000 - $110,000</p>
+                        <p><strong>🔧 Key Skills:</strong> Excel, Analysis, Communication, Business Knowledge</p>
+                    </div>
+                `;
+            }
+            
+            // No matches found
+            if (!foundMatches) {
+                resultsDiv.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #7f8c8d;">
+                        <h3>🤔 No specific career matches found</h3>
+                        <p>Try skills like: <strong>python, javascript, excel, design, writing, marketing</strong></p>
+                        <p>Or interests like: <strong>technology, business, creative, science</strong></p>
+                    </div>
+                `;
+            }
+            
+            // Update debug info
+            debugDiv.innerHTML += `<br>✅ <strong>Analysis Complete:</strong> Found ${foundMatches ? 'matching careers' : 'no matches'}`;
+        }
+
+        // Auto-run when page loads
+        setTimeout(findCareers, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+backend/career_recommender/__pycache__/urls.cpython-313.pyc
+backend/recommender/__pycache__/admin.cpython-313.pyc
+backend/recommender/__pycache__/apps.cpython-313.pyc
+backend/recommender/__pycache__/models.cpython-313.pyc
+backend/recommender/__pycache__/serializers.cpython-313.pyc
+backend/recommender/__pycache__/views.cpython-313.pyc
+backend/recommender/__pycache__/urls.cpython-313.pyc
+backend/recommender/ml_engine/__pycache__/preprocessor.cpython-313.pyc
+backend/recommender/ml_engine/__pycache__/simple_recommender.cpython-313.pyc
+backend/recommender/ml_engine/__pycache__/recommender.cpython-313.pyc
+backend/recommender/ml_engine/__pycache__/data_loader.cpython-313.pyc
