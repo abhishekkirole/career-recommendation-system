@@ -2,272 +2,221 @@
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![Django](https://img.shields.io/badge/Django-4.2-green)
-![Machine Learning](https://img.shields.io/badge/ML-Scikit--learn-orange)
-![Status](https://img.shields.io/badge/Status-Functional%20Prototype-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python)
+![Django](https://img.shields.io/badge/Django-6.0-green?style=for-the-badge&logo=django)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)
+![Scikit-learn](https://img.shields.io/badge/ML-Scikit--learn-orange?style=for-the-badge&logo=scikit-learn)
+![JWT](https://img.shields.io/badge/Auth-JWT-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen?style=for-the-badge)
 
-*A full-stack web application that provides personalized career recommendations using AI and machine learning*
+*A full-stack AI-powered web application that provides personalized career recommendations using Machine Learning*
+
+[🚀 Live Demo](#) • [📡 API Docs](#-api-endpoints) • [🛠️ Setup](#-quick-start)
 
 </div>
 
-## 🚀 Overview
+---
 
-The **Intelligent Career Recommendation System** helps users discover ideal career paths based on their skills, interests, and experience level. Using content-based filtering and natural language processing, the system analyzes user input and matches it with the most suitable careers from a comprehensive database.
+## 📌 Overview
+
+The **Intelligent Career Recommendation System** helps users discover ideal career paths based on their skills, interests, and experience level. Using **content-based filtering** and **natural language processing**, the system analyzes user input and matches it with the most suitable careers from a comprehensive database of 25+ professions.
+
+---
 
 ## ✨ Features
 
-- **🤖 AI-Powered Recommendations**: Uses TF-IDF and Cosine Similarity for intelligent career matching
-- **🎯 Personalized Results**: Tailored recommendations based on individual skills and interests
-- **📊 Multiple Career Domains**: Technology, Business, Creative, Healthcare, Education, and more
-- **⚡ Real-time Processing**: Instant career matching with detailed analysis
-- **📱 Responsive Design**: Works seamlessly on desktop and mobile devices
-- **🔧 Full-Stack Architecture**: Django backend with modern frontend
+- 🤖 **AI-Powered Recommendations** — TF-IDF + Cosine Similarity for intelligent career matching
+- 🎯 **Personalized Results** — Tailored to individual skills, interests & experience level
+- 📊 **10+ Career Domains** — Technology, Business, Creative, Healthcare, Education & more
+- ⚡ **Real-time Processing** — Instant career matching with match score percentages
+- 🔐 **User Authentication** — JWT-based secure login & registration
+- 📱 **Responsive Design** — Works seamlessly on desktop and mobile
+- 🔧 **Full-Stack Architecture** — Django REST API + React.js frontend
+
+---
 
 ## 🛠️ Tech Stack
 
-### Backend
-- **Python 3.8+** - Core programming language
-- **Django 4.2** - Web framework
-- **Django REST Framework** - API development
-- **Scikit-learn** - Machine learning algorithms
-- **Pandas** - Data processing and analysis
+| Layer | Technology |
+|---|---|
+| **Frontend** | React.js 18, CSS3, JavaScript (ES6+) |
+| **Backend** | Python 3.8+, Django 6.0, Django REST Framework |
+| **Machine Learning** | Scikit-learn, TF-IDF Vectorization, Cosine Similarity, Pandas |
+| **Authentication** | JWT (djangorestframework-simplejwt) |
+| **Database** | SQLite (development) / PostgreSQL (production) |
+| **API** | RESTful API with CORS support |
 
-### Frontend
-- **HTML5** - Structure and semantics
-- **CSS3** - Styling and responsive design
-- **JavaScript** - Interactive functionality
-- **Modern CSS** - Gradients, animations, and responsive layouts
-
-### Machine Learning
-- **TF-IDF Vectorization** - Text processing and feature extraction
-- **Cosine Similarity** - Career matching algorithm
-- **Content-Based Filtering** - Personalized recommendations
+---
 
 ## 📁 Project Structure
+
+```
 career-recommendation-system/
-├── backend/ # Django REST API
-│ ├── career_recommender/ # Project settings
-│ ├── recommender/ # Main app with ML engine
-│ ├── manage.py # Django management
-│ └── requirements.txt # Python dependencies
-├── frontend/ # Web interface
-│ ├── career.html # Main recommendation interface
-│ ├── new_career.html # Enhanced version
-│ └── ai_career.html # AI specialist version
-├── README.md # Project documentation
-└── .gitignore # Git exclusion rules
+├── backend/
+│   ├── career_recommender/        # Django project settings
+│   │   ├── settings.py
+│   │   └── urls.py
+│   ├── recommender/               # Main app
+│   │   ├── ml_engine/             # ML recommendation engine
+│   │   │   ├── recommender.py     # TF-IDF + Cosine Similarity
+│   │   │   └── data_loader.py     # Career database
+│   │   ├── models.py              # CareerPath, UserProfile models
+│   │   ├── views.py               # API views
+│   │   ├── serializers.py         # DRF serializers
+│   │   └── urls.py                # API routes
+│   ├── manage.py
+│   └── requirements.txt
+├── frontend/
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── App.js                 # Main React component + Auth
+│   │   ├── App.css                # Styling
+│   │   └── index.js
+│   └── package.json
+└── README.md
+```
 
-text
+---
 
-## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
+## 🎯 How It Works
 
-### Backend Setup
+```
+User Registers / Logs In (JWT Auth)
+           ↓
+  Enters Skills + Interests + Experience
+           ↓
+    Text Preprocessing & Cleaning
+           ↓
+      TF-IDF Vectorization
+           ↓
+    Cosine Similarity Calculation
+           ↓
+  Ranked Career Recommendations
+    with Match Score (0-100%)
+```
 
-1. **Navigate to backend directory**
-   ```bash
-   cd backend
-Create virtual environment
+1. **Authentication** — User registers/logs in via JWT tokens
+2. **User Input** — Skills, interests, and experience level
+3. **TF-IDF Vectorization** — Converts text to numerical vectors
+4. **Cosine Similarity** — Measures match between user profile and careers
+5. **Ranked Results** — Returns top 5 careers with match percentages
 
-bash
-python -m venv venv
-Activate virtual environment
+---
 
-Windows:
+## 📡 API Endpoints
 
-bash
-venv\Scripts\activate
-macOS/Linux:
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| `GET` | `/api/health/` | ❌ | Service health check |
+| `GET` | `/api/careers/` | ❌ | List all career paths |
+| `POST` | `/api/recommendations/` | ✅ | Get personalized recommendations |
+| `POST` | `/api/auth/register/` | ❌ | Register new user |
+| `POST` | `/api/auth/login/` | ❌ | Login & get JWT token |
+| `POST` | `/api/auth/refresh/` | ❌ | Refresh JWT token |
 
-bash
-source venv/bin/activate
-Install dependencies
+### Example Request
 
-bash
-pip install -r requirements.txt
-Run database migrations
+```json
+POST /api/recommendations/
+Authorization: Bearer <jwt_token>
 
-bash
-python manage.py makemigrations
-python manage.py migrate
-Start the development server
+{
+  "skills": "Python, Machine Learning, Data Analysis",
+  "interests": "AI, Web Development",
+  "experience_level": "Intermediate"
+}
+```
 
-bash
-python manage.py runserver
-The API will be available at http://localhost:8000
+### Example Response
 
-Frontend Setup
-Navigate to frontend directory
+```json
+{
+  "success": true,
+  "recommendations": [
+    {
+      "title": "Data Scientist",
+      "match_score": 92.5,
+      "description": "Extract insights from complex data using ML algorithms",
+      "category": "Data & Analytics",
+      "salary_range": "$90,000 - $150,000",
+      "demand_level": "High",
+      "required_skills": "Python, Machine Learning, Statistics, SQL",
+      "recommended_skills": "Deep Learning, Spark, Tableau"
+    }
+  ],
+  "count": 5
+}
+```
 
-bash
-cd frontend
-Open the main interface
+---
 
-Double-click career.html to open in your browser
+## 🧪 Sample Inputs to Try
 
-Or use: python -m http.server 3000 and visit http://localhost:3000/career.html
+**Technology / AI:**
+```
+Skills: Python, Machine Learning, Deep Learning
+Interests: Artificial Intelligence, Research
+Experience: Intermediate
+```
 
-🎯 How It Works
-1. User Input
-Users enter their:
+**Web Development:**
+```
+Skills: JavaScript, React, HTML, CSS
+Interests: Web Development, Design
+Experience: Beginner
+```
 
-Skills (comma-separated): e.g., "Python, JavaScript, Data Analysis"
-
-Interests (comma-separated): e.g., "Technology, Business, Creative"
-
-Experience Level: Beginner, Intermediate, or Advanced
-
-2. Machine Learning Processing
-Text Preprocessing: Cleans and normalizes user input
-
-TF-IDF Vectorization: Converts text to numerical representations
-
-Cosine Similarity: Calculates similarity between user profile and career descriptions
-
-3. Recommendation Engine
-Content-Based Filtering: Matches user skills with career requirements
-
-Score Calculation: Computes match percentages (0-100%)
-
-Ranking: Sorts careers by relevance and match score
-
-4. Results Display
-Career Cards: Detailed information for each recommended career
-
-Match Scores: Visual indicators of relevance
-
-Skill Analysis: Shows which skills matched for each career
-
-📊 ML Model Details
-Algorithm: Content-Based Filtering with TF-IDF
-
-Feature Extraction: Text vectorization with n-grams (1-2)
-
-Similarity Metric: Cosine Similarity
-
-Dataset: Custom career database with 25+ professions
-
-Accuracy: High precision in skill-based matching
-
-🌟 Key Features
-For Users
-✅ Personalized career path discovery
-
-✅ Multiple career domain exploration
-
-✅ Real-time skill analysis
-
-✅ Detailed career information
-
-✅ Mobile-friendly interface
-
-For Developers
-✅ Modular Django architecture
-
-✅ RESTful API design
-
-✅ Scalable ML pipeline
-
-✅ Clean, documented code
-
-✅ Easy to extend and customize
-
-🧪 Testing the System
-Sample Inputs to Try:
-Technology Focused
-
-text
-Skills: Python, JavaScript, Machine Learning
-Interests: Technology, AI, Web Development
-Business Focused
-
-text
+**Business / Management:**
+```
 Skills: Excel, Communication, Marketing
 Interests: Business, Management, Analysis
-Creative Focused
+Experience: Advanced
+```
 
-text
-Skills: Design, Writing, Creativity
-Interests: Creative, Marketing, Content
-AI Specialist
+---
 
-text
-Skills: Python, Machine Learning, Deep Learning, NLP
-Interests: Artificial Intelligence, Research
-🔧 API Endpoints
-GET /api/health/ - Service health check
+## 📊 ML Model Details
 
-GET /api/careers/ - List all available careers
+| Property | Value |
+|---|---|
+| Algorithm | Content-Based Filtering |
+| Feature Extraction | TF-IDF with n-grams (1-2) |
+| Similarity Metric | Cosine Similarity |
+| Career Database | 25+ professions |
+| Response Time | < 500ms |
 
-POST /api/recommendations/ - Get personalized career recommendations
+---
 
-Example API Request
-json
-{
-  "skills": "Python, JavaScript, Data Analysis",
-  "interests": "Technology, Web Development",
-  "experienceLevel": "Intermediate"
-}
-🚀 Deployment
-Local Development
-Backend: http://localhost:8000
+## 👨‍💻 Author
 
-Frontend: Open HTML files directly or use local server
+**Abhishek Kirole**
 
-Production Ready
-Can be deployed to Heroku, AWS, or DigitalOcean
+[![GitHub](https://img.shields.io/badge/GitHub-@abhishekirole-black?style=flat&logo=github)](https://github.com/abhishekirole)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Abhishek%20Kirole-blue?style=flat&logo=linkedin)](https://linkedin.com/in/abhishek-kirole)
+[![Email](https://img.shields.io/badge/Email-abhishekkirole7@gmail.com-red?style=flat&logo=gmail)](mailto:abhishekkirole77@gmail.com)
 
-Database can be upgraded to PostgreSQL
+---
 
-Frontend can be converted to React.js for enhanced functionality
+## 📄 License
 
-🤝 Contributing
-We welcome contributions! Please feel free to:
+This project is licensed under the MIT License.
 
-Fork the repository
+---
 
-Create a feature branch
+## 🙏 Acknowledgments
 
-Make your changes
+- Scikit-learn team for excellent ML libraries
+- Django community for the robust web framework
+- React.js community for the frontend framework
 
-Submit a pull request
-
-Areas for Contribution
-Add more career profiles
-
-Improve ML algorithms
-
-Enhance frontend design
-
-Add user authentication
-
-Implement career progression tracking
-
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-👨‍💻 Author
-Your Name
-
-GitHub: @yourusername
-
-Portfolio: yourportfolio.com
-
-LinkedIn: Your LinkedIn
-
-🙏 Acknowledgments
-Scikit-learn team for excellent ML libraries
-
-Django community for robust web framework
-
-Career data sources and research papers
+---
 
 <div align="center">
-⭐ Star this repo if you found it helpful!
-"Helping you find the perfect career path through intelligent technology" 🚀
 
-</div> ```
+⭐ **Star this repo if you found it helpful!**
+
+*"Helping you find the perfect career path through intelligent technology"* 🚀
+
+</div>
